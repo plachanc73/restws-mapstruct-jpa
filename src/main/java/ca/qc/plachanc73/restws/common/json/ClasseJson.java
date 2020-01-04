@@ -2,19 +2,25 @@ package ca.qc.plachanc73.restws.common.json;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import ca.qc.plachanc73.restws.common.domaine.TypeClasse;
+import ca.qc.plachanc73.restws.common.validation.strategy.TypeClasseStrategy;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 public class ClasseJson {
 
 	private Long id;
 
 	@NotBlank
+	@Size(max = 5)
 	private String code;
 
 	@NotBlank
+	@Size(max = 100)
 	private String libelle;
 
+	@PodamStrategyValue(TypeClasseStrategy.class)
 	@NotNull
 	private TypeClasse typeClasse;
 

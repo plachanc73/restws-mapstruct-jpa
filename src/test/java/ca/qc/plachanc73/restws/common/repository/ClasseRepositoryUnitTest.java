@@ -46,16 +46,6 @@ public class ClasseRepositoryUnitTest extends AbstractUnitTest {
 	}
 
 	@Test
-	public void testDelete() {
-		Optional<Classe> optionalClasse = classeRepository.findById(6L);
-		assertTrue(optionalClasse.isPresent());
-		Classe classe = optionalClasse.get();
-		classeRepository.delete(classe);
-		optionalClasse = classeRepository.findById(6L);
-		assertTrue(!optionalClasse.isPresent());
-	}
-
-	@Test
 	public void testUpdate() {
 		Optional<Classe> optionalClasse = classeRepository.findById(1L);
 		assertTrue(optionalClasse.isPresent());
@@ -64,5 +54,15 @@ public class ClasseRepositoryUnitTest extends AbstractUnitTest {
 		classeRepository.save(classe);
 		optionalClasse = classeRepository.findById(1L);
 		assertTrue(optionalClasse.get().getCode().equals("TTT"));
+	}
+
+	@Test
+	public void testDelete() {
+		Optional<Classe> optionalClasse = classeRepository.findById(6L);
+		assertTrue(optionalClasse.isPresent());
+		Classe classe = optionalClasse.get();
+		classeRepository.delete(classe);
+		optionalClasse = classeRepository.findById(6L);
+		assertTrue(!optionalClasse.isPresent());
 	}
 }

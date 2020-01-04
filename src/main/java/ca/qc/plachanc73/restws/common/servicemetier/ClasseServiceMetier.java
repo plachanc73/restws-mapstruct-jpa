@@ -13,4 +13,8 @@ public interface ClasseServiceMetier {
 	Optional<Classe> getClasseById(Long idClasse);
 
 	Optional<Classe> getClasseByCode(String codeClasse);
+
+	Classe save(Classe classe);
+
+	void delete(Classe classe);
 }

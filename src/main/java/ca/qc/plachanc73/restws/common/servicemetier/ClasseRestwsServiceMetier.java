@@ -32,4 +32,14 @@ public class ClasseRestwsServiceMetier implements ClasseServiceMetier {
 	public Optional<Classe> getClasseByCode(String codeClasse) {
 		return classeDao.getClasseByCode(codeClasse);
 	}
+
+	@Override
+	public Classe save(Classe classe) {
+		return classeDao.save(classe);
+	}
+
+	@Override
+	public void delete(Classe classe) {
+		classeDao.delete(classe);
+	}
 }

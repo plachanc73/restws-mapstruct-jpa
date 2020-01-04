@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import ca.qc.plachanc73.restws.common.entity.Classe;
+import ca.qc.plachanc73.restws.common.json.ClasseJson;
 import ca.qc.plachanc73.restws.common.json.FilterClasseJson;
 
 public interface ClasseController extends Controller {
@@ -15,15 +15,40 @@ public interface ClasseController extends Controller {
 	 * REST Web Service to filter list of classes.
 	 * 
 	 * @param FilterClasseJson
-	 * @return list of {@link Classe}
+	 * @return list of {@link ClasseJson}
 	 */
-	ResponseEntity<List<Classe>> FilterClasses(FilterClasseJson FilterClasseJson);
+	ResponseEntity<List<ClasseJson>> filterClasses(FilterClasseJson FilterClasseJson);
 
 	/**
 	 * REST Web Service to get a classe depending on the given id.
 	 * 
 	 * @param idClasse
-	 * @return {@link Classe}
+	 * @return {@link ClasseJson}
 	 */
-	ResponseEntity<Classe> getClasse(Long idClasse);
+	ResponseEntity<ClasseJson> getClasse(Long idClasse);
+
+	/**
+	 * REST Web Service to create a classe.
+	 * 
+	 * @param classe
+	 * @return {@link ClasseJson}
+	 */
+	ResponseEntity<ClasseJson> createClasse(ClasseJson classeJson);
+
+	/**
+	 * REST Web Service to save a classe.
+	 * 
+	 * @param idClasse
+	 * @param classe
+	 * @return {@link ClasseJson}
+	 */
+	ResponseEntity<ClasseJson> saveClasse(Long idClasse, ClasseJson classeJson);
+
+	/**
+	 * REST Web Service to delete a classe.
+	 * 
+	 * @param idClasse
+	 * @return {@link ClasseJson}
+	 */
+	ResponseEntity<Void> deleteClasse(Long idClasse);
 }

@@ -30,4 +30,14 @@ public class ClasseRestwsDao implements ClasseDao {
 	public Optional<Classe> getClasseByCode(String codeClasse) {
 		return classeRepository.findByCode(codeClasse);
 	}
+
+	@Override
+	public Classe save(Classe classe) {
+		return classeRepository.save(classe);
+	}
+
+	@Override
+	public void delete(Classe classe) {
+		classeRepository.delete(classe);
+	}
 }

@@ -18,7 +18,7 @@ public class Classe extends AbstractEntity {
 	private static final long serialVersionUID = -821240902400276250L;
 
 	@Id
-	@SequenceGenerator(name = "SEQUENCE", sequenceName = "CLASSE_SEQ")
+	@SequenceGenerator(name = "SEQUENCE", sequenceName = "CLASSE_SEQ", allocationSize = 1, initialValue = 10)
 	@GeneratedValue(generator = "SEQUENCE")
 	@Column(name = "ID_CLASSE", unique = true)
 	private Long id;

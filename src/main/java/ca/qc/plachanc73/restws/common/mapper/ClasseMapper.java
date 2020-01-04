@@ -11,6 +11,10 @@ import ca.qc.plachanc73.restws.common.json.ClasseJson;
 @Mapper(componentModel = "spring", uses = { CommonEntityMapper.class })
 public abstract class ClasseMapper {
 
+	// Map JSON to Entity
+
+	public abstract Classe classeJsonToClasse(ClasseJson classeJson);
+
 	// Map Entity to JSON
 
 	@Mapping(target = "libelleTypeClasse", expression = "java( getLibelleTypeClasse(classe) )")

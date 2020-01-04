@@ -6,7 +6,7 @@
     drop table USER_ROLE if exists;
 
     drop sequence if exists CLASSE_SEQ;
-create sequence CLASSE_SEQ start with 1 increment by 50;
+create sequence CLASSE_SEQ start with 10 increment by 1;
 
     create table CLASSE (
        ID_CLASSE bigint not null,
@@ -28,7 +28,7 @@ create sequence CLASSE_SEQ start with 1 increment by 50;
 
     create table USER_ROLE (
        ID_USER_ROLE bigint not null,
-        DATE_DEBUT timestamp,
+        DATE_DEBUT timestamp not null,
         DATE_FIN timestamp,
         TYPE_ROLE varchar(255) not null,
         ID_USER bigint not null,

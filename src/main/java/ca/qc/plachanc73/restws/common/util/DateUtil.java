@@ -10,11 +10,7 @@ public class DateUtil {
 
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 
-	public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm";
-
 	private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
-
-	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat(DATE_TIME_PATTERN);
 
 	public DateUtil() {
 		// Aucune initialisation
@@ -28,16 +24,6 @@ public class DateUtil {
 	 */
 	public String formatDate(Date date) {
 		return dateFormat.format(date);
-	}
-
-	/**
-	 * Retourne la date et l'heure formattées.
-	 * 
-	 * @param date
-	 * @return Date
-	 */
-	public String formatDateTime(Date date) {
-		return dateTimeFormat.format(date);
 	}
 
 	/**
