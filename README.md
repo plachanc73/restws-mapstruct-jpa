@@ -1,0 +1,2 @@
+# restws-mapstruct-jpa
+ 
