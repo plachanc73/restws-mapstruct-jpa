@@ -2,17 +2,15 @@ package ca.qc.plachanc73.restws.common.config;
 
 import java.util.Properties;
 
-import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jndi.JndiTemplate;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -20,12 +18,15 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DbUnitConfiguration;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("ca.qc.plachanc73")
+@DbUnitConfiguration(dataSetLoader = NullReplacementDataSetLoader.class)
+@DatabaseSetup(value = "/data.xml")
 public class PersistenceJPAConfig {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(PersistenceJPAConfig.class);
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -40,16 +41,9 @@ public class PersistenceJPAConfig {
 		return em;
 	}
 
-	@Bean
-	public DataSource dataSource() {
-		DataSource dataSource = null;
-		JndiTemplate jndi = new JndiTemplate();
-		try {
-			dataSource = (DataSource) jndi.lookup("java:/dsrestws");
-		} catch (NamingException e) {
-			LOGGER.error("dataSource - NamingException for java:/dsrestws", e);
-		}
-		return dataSource;
+	@Bean(destroyMethod = "shutdown")
+	public EmbeddedDatabase dataSource() {
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("db-schema.sql").build();
 	}
 
 	@Bean
@@ -72,7 +66,10 @@ public class PersistenceJPAConfig {
 				"org.springframework.orm.hibernate5.SpringSessionContext");
 		properties.setProperty("hibernate.show_sql", "false");
 		properties.setProperty("hibernate.format_sql", "false");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		// TODO To use for Hibernate Oracle10gDialect
+		// properties.setProperty("hibernate.dialect",
+		// "org.hibernate.dialect.Oracle10gDialect");
 
 		return properties;
 	}

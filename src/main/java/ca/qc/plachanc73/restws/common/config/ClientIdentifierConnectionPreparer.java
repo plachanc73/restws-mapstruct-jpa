@@ -5,11 +5,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
 
-@Component
-@Aspect
+// TODO Activate this annotation to get an Oracle Database connection to set identifier
+// @Component
+// @Aspect
 public class ClientIdentifierConnectionPreparer {
 
 	private static boolean updateClientIdentifierActive = true;
