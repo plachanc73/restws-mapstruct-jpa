@@ -1,10 +1,12 @@
 package ca.qc.plachanc73.restws.common.config;
 
+import java.io.File;
 import java.util.EnumSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -14,6 +16,8 @@ import org.reflections.Reflections;
 import ca.qc.plachanc73.restws.common.entity.User;
 
 public class SchemaTranslator {
+
+	private static final String dbSchemaFilename = "src/test/resources/db-schema.sql";
 
 	/**
 	 * Add annotated classes to the Metadata Sources.
@@ -34,7 +38,10 @@ public class SchemaTranslator {
 
 		addAnnotatedClasses(metadataSources);
 
-		new SchemaExport().setFormat(true).setDelimiter(";").setOutputFile("src/test/resources/db-schema.sql")
+		File dbSchemaToDelete = FileUtils.getFile(dbSchemaFilename);
+		FileUtils.deleteQuietly(dbSchemaToDelete);
+
+		new SchemaExport().setFormat(true).setDelimiter(";").setOutputFile(dbSchemaFilename)
 				.execute(EnumSet.of(TargetType.SCRIPT), SchemaExport.Action.BOTH, metadataSources.buildMetadata());
 	}
 }
