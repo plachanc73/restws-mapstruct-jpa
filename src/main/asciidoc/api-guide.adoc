@@ -1,0 +1,136 @@
+= Example of REST Web services with MapStruct and JPA
+Author: Pascal Lachance;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[overview]]
+= Presentation
+
+Example of REST Web services with MapStruct and JPA :
+
+ ** <<services>>
+
+[[services]]
+== REST Web Services
+
+Here resources available with REST Web Services :
+
+ * <<services-classes>>
+
+[[services-classes]]
+=== Classes
+
+Here class type (*typeClasse*) available values :
+
+ * PRIVEE - Privée
+ * PUBLIC - Public
+
+Here REST Web Services Web for classes :
+
+ * <<services-classes-filter>>
+ * <<services-classes-get>>
+ * <<services-classes-create>>
+ * <<services-classes-update>>
+ * <<services-classes-delete>>
+
+[[services-classes-filter]]
+==== Filter classes
+
+This REST Web Service is searching classes based on given criterias :
+
+ * <<services-classes-filterOnClassType>>
+
+pass:q[<u>*The precondition*</u>] to filter classes is :
+
+ * The user is an administrator (ADMIN) or a teacher (TEACHER) else an HTTP 403 is returned.
+
+Here available search criterias :
+
+ * typeClasse : Class type.
+
+Here field name to use to sort on the field value :
+
+ * code : Name to request a sort on the class code.
+ * libelle : Name to request a sort on the class label.
+ * typeClasse : Name to request a sort on the class type.
+
+[[services-classes-filterOnClassType]]
+===== Filter classes based on the given class type
+
+====== Request example
+
+include::{snippets}/post_filter_classes_typeClasse_PRIVEE/http-request.adoc[]
+
+====== Response example
+
+include::{snippets}/post_filter_classes_typeClasse_PRIVEE/http-response.adoc[]
+
+
+[[services-classes-get]]
+==== Get a class
+
+pass:q[<u>*The precondition*</u>] to get a class is :
+
+ * A class must exist for the given id else an HTTP 404 is returned.
+
+===== Request example
+
+include::{snippets}/get_classe/http-request.adoc[]
+
+===== Response example
+
+include::{snippets}/get_classe/http-response.adoc[]
+
+
+[[services-classes-create]]
+==== Create a class
+
+pass:q[<u>*The precondition*</u>] to create a class is :
+
+ * The user is an administrator (ADMIN) else an HTTP 403 is returned.
+
+===== Request example
+
+include::{snippets}/post_create_classe/http-request.adoc[]
+
+===== Response example
+
+include::{snippets}/post_create_classe/http-response.adoc[]
+
+
+[[services-classes-update]]
+==== Update a class
+
+pass:q[<u>*Preconditions*</u>] to update a class are :
+
+ * The user is an administrator (ADMIN) else an HTTP 403 is returned.
+ * A class must exist for the given id else an HTTP 404 is returned.
+
+===== Request example
+
+include::{snippets}/put_update_classe/http-request.adoc[]
+
+===== Response example
+
+include::{snippets}/put_update_classe/http-response.adoc[]
+
+
+[[services-classes-delete]]
+==== Delete a class
+
+pass:q[<u>*Preconditions*</u>] to delete a class :
+
+ * The user is an administrator (ADMIN) else an HTTP 403 is returned.
+ * A class must exist for the given id else an HTTP 404 is returned.
+
+===== Request example
+
+include::{snippets}/delete_classe/http-request.adoc[]
+
+===== Response example
+
+include::{snippets}/delete_classe/http-response.adoc[]
