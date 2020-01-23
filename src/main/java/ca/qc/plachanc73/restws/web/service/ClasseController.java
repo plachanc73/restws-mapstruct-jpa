@@ -30,7 +30,7 @@ public interface ClasseController extends Controller {
 	/**
 	 * REST Web Service to create a classe.
 	 * 
-	 * @param classe
+	 * @param classeJson
 	 * @return {@link ClasseJson}
 	 */
 	ResponseEntity<ClasseJson> createClasse(ClasseJson classeJson);
@@ -39,7 +39,7 @@ public interface ClasseController extends Controller {
 	 * REST Web Service to save a classe.
 	 * 
 	 * @param idClasse
-	 * @param classe
+	 * @param classeJson
 	 * @return {@link ClasseJson}
 	 */
 	ResponseEntity<ClasseJson> saveClasse(Long idClasse, ClasseJson classeJson);
