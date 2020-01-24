@@ -107,7 +107,7 @@ public class ClasseRestController extends AbstractRestController implements Clas
 
 	@Override
 	@PutMapping(value = PATH_ID_CLASSE)
-	public ResponseEntity<ClasseJson> saveClasse(@PathVariable Long idClasse,
+	public ResponseEntity<ClasseJson> updateClasse(@PathVariable Long idClasse,
 			@Valid @RequestBody ClasseJson classeJson) {
 		Optional<Classe> optionalClasse = classeBusinessService.getClasseById(idClasse);
 		if (!optionalClasse.isPresent()) {

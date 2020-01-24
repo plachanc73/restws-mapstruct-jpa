@@ -42,7 +42,7 @@ public interface ClasseController extends Controller {
 	 * @param classeJson
 	 * @return {@link ClasseJson}
 	 */
-	ResponseEntity<ClasseJson> saveClasse(Long idClasse, ClasseJson classeJson);
+	ResponseEntity<ClasseJson> updateClasse(Long idClasse, ClasseJson classeJson);
 
 	/**
 	 * REST Web Service to delete a classe.
